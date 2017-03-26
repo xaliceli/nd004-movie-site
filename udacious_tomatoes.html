@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Udacious Tomatoes</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono|Source+Sans+Pro" rel="stylesheet">
+
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+            background-color: #EEE;
+            color: #555;
+        }
+        h2, h3, .navbar-header {
+            font-family: 'Space Mono', monospace;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        h3 {
+            padding-top: 0;
+            margin-top: 0;
+            font-size: 1.25em;
+        }
+        p {
+            font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif;
+            font-size: 1.25em;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin: 25px auto;
+            padding: 25px;
+            background-color: #FDFFFF;
+            border: 10px solid #EEE;
+        }
+        .movie-tile:hover {
+            color: #333;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Udacious Tomatoes: A Selection of Movies Worth Watching</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="movie-tile col-md-6 text-center" data-trailer-youtube-id="-fny99f8amM" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/HyperNormalisation.jpg" width="220" height="342">
+    <h2>HyperNormalisation</h2>
+    <h3>Documentary by Adam Curtis (2016)</h3>
+    <p>Thought-provoking BBC documentary on power and narratives in contemporary society.</p>
+</div>
+
+<div class="movie-tile col-md-6 text-center" data-trailer-youtube-id="P0xVp3N-M84" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/7/78/Samsara_Film_Poster.jpg" width="220" height="342">
+    <h2>Samsara</h2>
+    <h3>Documentary by Rob Fricke (2011)</h3>
+    <p>Visually stunning meditation on humankind's simultaneous majesty and vulnerability.</p>
+</div>
+
+<div class="movie-tile col-md-6 text-center" data-trailer-youtube-id="8ubt8JvykiQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Millennium_mambo.jpg" width="220" height="342">
+    <h2>Millennium Mambo</h2>
+    <h3>Drama by Hou Hsiao-Hsien (2001)</h3>
+    <p>Taiwanese art house film about the fleeting beauty of youth.</p>
+</div>
+
+<div class="movie-tile col-md-6 text-center" data-trailer-youtube-id="qhS6tvSb0UQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/b/b8/Short_Term_12.jpg" width="220" height="342">
+    <h2>Short Term 12</h2>
+    <h3>Drama by Destin Daniel Cretton (2013)</h3>
+    <p>Heart-breaking story of a foster home's employees and residents.</p>
+</div>
+
+<div class="movie-tile col-md-6 text-center" data-trailer-youtube-id="1GiLxkDK8sI" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/6/62/Eternal_sunshine_of_the_spotless_mind_ver3.jpg" width="220" height="342">
+    <h2>Eternal Sunshine of the Spotless Mind</h2>
+    <h3>Drama by Michel Gondry (2004)</h3>
+    <p>Is love worth it? Who knows???</p>
+</div>
+
+<div class="movie-tile col-md-6 text-center" data-trailer-youtube-id="92a7Hj0ijLs" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/02/My_Neighbor_Totoro_-_Tonari_no_Totoro_%28Movie_Poster%29.jpg" width="220" height="342">
+    <h2>My Neighbor Totoro</h2>
+    <h3>Animation by Hayao Miyazaki (1988)</h3>
+    <p>Adorable, feel-good cartoon about siblings in the Japanese countryside and their mysterious friend.</p>
+</div>
+
+    </div>
+  </body>
+</html>
